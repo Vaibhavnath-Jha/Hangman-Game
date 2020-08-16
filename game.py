@@ -11,7 +11,7 @@ bm = json.loads(open("Bollywood_links.json").read())
 
 def choice(): #1
     print("\t\t\nChoose Category: (1.)Hollywood OR (2.)Bollywood(Default)")
-    if input("\nEnter your Choice:") == "1": movie_db = hm
+    if input("\nEnter your Choice: ") == "1": movie_db = hm
     else: movie_db = bm
     return movie_db
 
@@ -83,7 +83,7 @@ def info(db): #6
 		print('\n{:6}{:>61}'.format('Genre:',db['Genre']))
 		print('\n{:9}{:>58}'.format('Director:',db['Director']))
 		print('\n{:7}{:>60}'.format('Actors:',db['Actors']))
-		print('\n{:13}{:>56}'.format('ImDb Ratings:',db['imdbRating']))
+		print('\n{:13}{:>54}'.format('ImDb Ratings:',db['imdbRating']))
 		print('\n{:7}{:>60}'.format('Awards:',db['Awards']))
 		return 
 	else:

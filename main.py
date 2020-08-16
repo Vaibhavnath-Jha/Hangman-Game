@@ -1,5 +1,5 @@
 import os
-import game_api_version
+import game
 import time
 clear = os.system
 
@@ -56,9 +56,9 @@ for round_num in range(rounds):
 	for i in range(num_of_players):
 		print("\t-|Round {} Begin|-\n".format(round_num+1))
 		print("{}'s turn!\n".format(player_obj[i].name))
-		player_obj[i].score += game_api_version.hangman()
-		game_api_version.counter = True
-		game_api_version.exit_token = False
+		player_obj[i].score += game.hangman()
+		game.counter = True
+		game.exit_token = False
 		time.sleep(5)
 		clear('cls')
 	print("\n\nScores after round {} are:\n".format(round_num+1))
