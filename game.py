@@ -5,6 +5,7 @@ import json
 import urllib.request
 import urllib.parse
 import urllib.error
+import time
 
 hm = json.loads(open("Hollywood_links.json").read())
 bm = json.loads(open("Bollywood_links.json").read())
@@ -13,6 +14,7 @@ def choice(): #1
     print("\t\t\nChoose Category: (1.)Hollywood OR (2.)Bollywood(Default)")
     if input("\nEnter your Choice: ") == "1": movie_db = hm
     else: movie_db = bm
+    os.system('cls')
     return movie_db
 
 def call(db, index):
@@ -85,7 +87,7 @@ def info(db): #6
 		print('\n{:7}{:>60}'.format('Actors:',db['Actors']))
 		print('\n{:13}{:>54}'.format('ImDb Ratings:',db['imdbRating']))
 		print('\n{:7}{:>60}'.format('Awards:',db['Awards']))
-		return 
+		return print("\n")
 	else:
 		return print("\n")
 
@@ -112,6 +114,7 @@ def fullname_attempt(ltr, title): #8
             exit_token = True
         else:
             print("You guessed it wrong!")
+            time.sleep(5)
             max_attempts = 0
 
 
@@ -141,22 +144,23 @@ def hangman(): #9
             for place in places:
                 name[place] = ltr
             print("\n")
-            for ele in name:
-                print(ele, end=' ')
         elif (len(ltr) == 1) and (ltr not in realname):
             max_attempts -= 1
             if max_attempts != 0:
                 print('\nNot Found.\tRemaining Chances-> ',max_attempts)
-                print("\nTry Again")
+                input("\nPress Enter to continue")
                 print("\n\n")
-                for ele in name:
-                    print(ele, end=' ')
             else:
                 print("\nYou Lost!")
                 print('\nThe movie was: {}\n'.format(movie['Title']))
+                input("\nPress Enter to continue")
+        os.system('cls')
         global exit_token
+        if max_attempts != 0 and exit_token == False:
+            for ele in name:
+                print(ele, end=' ')
         if name == realname or exit_token == True:
-            print("\n\nCorrect!")
+            print("\n\nCorrect!\nThe movie was: {}".format(movie['Title']))
             info(movie)
             break
     return max_attempts*10

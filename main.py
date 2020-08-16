@@ -32,7 +32,7 @@ names = ["name_" + str(i) for i in range(num_of_players)]
 change = True
 while change:
 	for i in range(num_of_players):
-		names[i] = str(input("\nEnter Player"+str((i+1))+" Name: "))
+		names[i] = str(input("\nEnter Player "+str((i+1))+" Name: "))
 	clear('cls')
 	print("\nParticipating Players: ")
 	for i in range(num_of_players):
@@ -44,7 +44,7 @@ while change:
 		clear('cls')
 
 clear('cls')
-rounds = int(input("Enter how many rounds you want to play?:"))
+rounds = int(input("Enter how many rounds you want to play?: "))
 clear('cls')
 
 player_obj = ['p1','p2','p3','p4']
@@ -65,7 +65,6 @@ for round_num in range(rounds):
 	print("{:12}{:>12}".format("Player","Score"))
 	for i in range(num_of_players):
 		player_obj[i].display()
-	clear('cls')
 
 clear('cls')
 print("\tFinal Score!\n")
