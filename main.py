@@ -25,19 +25,15 @@ def player_details():
 	print("\n2) Two Players\t\t\t\t4) Four Players")
 	num_of_players = int(input("\nEnter your choice: "))
 	names = ["name_" + str(i) for i in range(num_of_players)]
-	change = True
-	while change:
+	while True:
 		for i in range(num_of_players):
 			names[i] = str(input("\nEnter Player "+str((i+1))+" Name: "))
 		clear('cls')
 		print("\nParticipating Players: ")
 		for i in range(num_of_players):
 			print("\n", names[i])
-
-		if str(input("\nDo you want to change anything?(Y/N): ")).upper() == "N":
-			change = False
-		else:
-			clear('cls')
+		if str(input("\nDo you want to change anything?(Y/N): ")).upper() == "N": break
+		else: clear('cls')
 	return num_of_players,names
 
 def initialize_player(num_of_players, names):
