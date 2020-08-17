@@ -7,8 +7,8 @@ import urllib.parse
 import urllib.error
 import time
 
-hm = json.loads(open("Hollywood_links.json").read())
-bm = json.loads(open("Bollywood_links.json").read())
+hm = json.loads(open("hollywood_links.json").read())
+bm = json.loads(open("bollywood_links.json").read())
 
 def choice(): #1
     print("\t\t\nChoose Category: (1.)Hollywood OR (2.)Bollywood(Default)")
@@ -23,9 +23,9 @@ def call(db, index):
     try:
         res = urllib.request.urlopen(req)
     except urllib.error.HTTPError as e:
-        return e
+        return str(e)
     except urllib.error.URLError as e:
-        return e
+        return str(e)
     else:
         return json.loads(res.read())
 
@@ -90,34 +90,35 @@ def guessed_ltr(ltr, guessedlist, realname): #7
     if len(guessedlist) >= 1:
         if (ltr in guessedlist) and (ltr not in realname):
             max_attempts += 1
-            return print('\n')
-        elif (ltr in guessedlist):
             return print('\n*You have already tried this/these letter ' + str(guessedlist))
+        elif (ltr in guessedlist):
+            return print('\n')
         else:
             return guessedlist.append(ltr)
     else: 
         return guessedlist.append(ltr)
 
 exit_token = False
-def fullname_attempt(ltr, title): #8
+def fullname_attempt(ltr, title, movie): #8
     global max_attempts, exit_token
     if len(ltr) > 1:
         if ltr.replace(" ", "|") == title:
             exit_token = True
         else:
-            print("You guessed it wrong!")
+            print("\nYou guessed it wrong!")
+            print("\nThe movie was:{}\n".format(movie['Title']))
             time.sleep(3)
             max_attempts = 0
 
 max_attempts = 7
 def hangman(): #9
     category = choice()
-    repeat = True
-    while repeat:
+    while True:
         index = rd.randint(0, 897)
         movie = call(category, index)
-        if movie['Response'] != 'False':
-            repeat = False
+        if type(movie) == str: pass
+        elif type(movie) == dict and movie['Response'] == 'False': pass
+        else: break
     title = alter(movie['Title'])
     realname = [char for char in title]
     guessedlist = []
@@ -133,7 +134,7 @@ def hangman(): #9
         print("\n"+"__" * len(title)+"\n")
         ltr = input('Enter your Guess: ').upper()
         guessed_ltr(ltr, guessedlist, realname)
-        fullname_attempt(ltr, title)
+        fullname_attempt(ltr, title, movie)
         if (len(ltr) == 1) and (ltr in realname):
             places = find_all_indexes(title, ltr)
             for place in places:
