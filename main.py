@@ -1,6 +1,7 @@
 import os
 import game
 import time
+from Winner import winner
 
 class Player:
 	def __init__(self, name, score):
@@ -49,7 +50,7 @@ def start_game(player,num_of_players,names):
 		for i in range(num_of_players):
 			print("\t-|Round {} Begin|-\n".format(round_num+1))
 			print("{}'s turn!\n".format(player[i].name))
-			player[i].score += game.hangman()
+			player[i].score += 5 #Call to the actual game
 			game.counter = True
 			game.exit_token = False
 			time.sleep(3)
@@ -58,20 +59,18 @@ def start_game(player,num_of_players,names):
 		print("{:12}{:>12}".format("Player","Score"))
 		for i in range(num_of_players):
 			player[i].display()
-	os.system('cls')
+		time.sleep(3)
+		os.system('cls')
 	print("\tFinal Score!\n")
 	print("{:12}{:>12}".format("Player","Score"))
 	for i in range(num_of_players):
 		player[i].display()
-
 	final_score = []
 	for i in range(num_of_players):
 		final_score.append(player[i].score)
-	max_score = max(final_score)
-	winner_player = final_score.index(max_score)
-	print("\nWinner is {} with score of {}".format(player[winner_player].name,max_score))
+	winner(final_score, player)
 	print("\n\n\t!Thanks for playing!\n")
-
+	
 def main():
 	rules()
 	num_of_players, names = player_details()
