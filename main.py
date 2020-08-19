@@ -1,7 +1,6 @@
 import os
 import game
 import time
-clear = os.system
 
 class Player:
 	def __init__(self, name, score):
@@ -17,7 +16,7 @@ def rules(): #11
     print("3. If you decide to enter FULL-NAME of the movie, enter as it is. An incorrect guess here means you're OUT")
     print("4. You have to press enter after you make a guess.")
     input('\n\n------------------------------------Press Enter to continue!------------------------------------')
-    clear('cls') 
+    os.system('cls') 
 
 def player_details():
 	print("\t\tChoose Number of Players")
@@ -28,12 +27,12 @@ def player_details():
 	while True:
 		for i in range(num_of_players):
 			names[i] = str(input("\nEnter Player "+str((i+1))+" Name: "))
-		clear('cls')
+		os.system('cls')
 		print("\nParticipating Players: ")
 		for i in range(num_of_players):
 			print("\n", names[i])
 		if str(input("\nDo you want to change anything?(Y/N): ")).upper() == "N": break
-		else: clear('cls')
+		else: os.system('cls')
 	return num_of_players,names
 
 def initialize_player(num_of_players, names):
@@ -43,9 +42,9 @@ def initialize_player(num_of_players, names):
 	return player
 
 def start_game(player,num_of_players,names):
-	clear('cls')
+	os.system('cls')
 	rounds = int(input("\nEnter how many rounds you want to play?: "))
-	clear('cls')
+	os.system('cls')
 	for round_num in range(rounds):	
 		for i in range(num_of_players):
 			print("\t-|Round {} Begin|-\n".format(round_num+1))
@@ -54,12 +53,12 @@ def start_game(player,num_of_players,names):
 			game.counter = True
 			game.exit_token = False
 			time.sleep(3)
-			clear('cls')
+			os.system('cls')
 		print("\n\nScores after round {} are:\n".format(round_num+1))
 		print("{:12}{:>12}".format("Player","Score"))
 		for i in range(num_of_players):
 			player[i].display()
-	clear('cls')
+	os.system('cls')
 	print("\tFinal Score!\n")
 	print("{:12}{:>12}".format("Player","Score"))
 	for i in range(num_of_players):

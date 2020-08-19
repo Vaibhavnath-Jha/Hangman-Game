@@ -68,7 +68,7 @@ def hint(movie, i): #5
     if i == 4 and counter == True:
         if input("\n\nDo you want a Hint?(Y/N):").upper() == "Y":
             counter = False
-            return print("\nshort synopsis/Category of the movie: {}".format(movie['Plot']))
+            return print("\nPlot of the movie:\n {}".format(movie['Plot']))
         else:
             counter = False      
 
@@ -91,8 +91,6 @@ def guessed_ltr(ltr, guessedlist, realname): #7
         if (ltr in guessedlist) and (ltr not in realname):
             max_attempts += 1
             return print('\n*You have already tried this/these letter ' + str(guessedlist))
-        elif (ltr in guessedlist):
-            return print('\n')
         else:
             return guessedlist.append(ltr)
     else: 
