@@ -50,7 +50,7 @@ def start_game(player,num_of_players,names):
 		for i in range(num_of_players):
 			print("\t-|Round {} Begin|-\n".format(round_num+1))
 			print("{}'s turn!\n".format(player[i].name))
-			player[i].score += 5 #Call to the actual game
+			player[i].score += game.hangman() #Call to the actual game
 			game.counter = True
 			game.exit_token = False
 			time.sleep(3)
