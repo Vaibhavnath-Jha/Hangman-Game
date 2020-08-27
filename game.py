@@ -14,7 +14,7 @@ def choice(): #1
     print("\t\t\nChoose Category: (1.)Hollywood OR (2.)Bollywood(Default)")
     if input("\nEnter your Choice: ") == "1": category = hm
     else: category = bm
-    os.system('cls')
+    os.system('clear')
     return category
 
 def call(db, index):
@@ -148,7 +148,7 @@ def hangman(): #9
                 print("\nYou Lost!")
                 print('\nThe movie was: {}\n'.format(movie['Title']))
                 input("\nPress Enter to continue")
-        os.system('cls')
+        os.system('clear')
         global exit_token
         if max_attempts != 0 and exit_token == False:
             for ele in name:
